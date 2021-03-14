@@ -7,6 +7,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -16,6 +17,19 @@ import java.util.List;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<BadRequestExceptionDetails> handlerBadRequestException(BadRequestException badRequestException) {
+        return new ResponseEntity<>(
+                BadRequestExceptionDetails.builder()
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .title("Bad Request Exception. Check Documentation")
+                        .timestamp(LocalDateTime.now())
+                        .details(badRequestException.getMessage())
+                        .build(), HttpStatus.BAD_REQUEST
+        );
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -31,7 +45,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         }
 
         return new ResponseEntity<>(
-                ExceptionDetails.builder()
+                ArgumentsValidationExceptionDetails.builder()
                         .status(status.value())
                         .title("One or more fields are invalid! Please, fill all the fields correctly")
                         .timestamp(LocalDateTime.now())
