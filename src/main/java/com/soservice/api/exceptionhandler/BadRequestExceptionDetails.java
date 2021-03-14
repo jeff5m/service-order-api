@@ -6,5 +6,5 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @SuperBuilder
 public class BadRequestExceptionDetails extends ExceptionDetails{
-    private String details;
+    private final String details;
 }
