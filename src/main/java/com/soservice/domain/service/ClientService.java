@@ -1,6 +1,7 @@
 package com.soservice.domain.service;
 
 import com.soservice.api.exceptionhandler.BadRequestException;
+import com.soservice.api.exceptionhandler.EmailAlreadyRegisteredException;
 import com.soservice.domain.model.Client;
 import com.soservice.domain.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,10 @@ public class ClientService {
 
     @Transactional
     public Client save(Client client) {
+        Client existentClient = clientRepository.findByEmail(client.getEmail());
+        if (existentClient != null && !existentClient.equals(client)) {
+            throw new EmailAlreadyRegisteredException("There is already a registered user with this email address");
+        }
         return clientRepository.save(client);
     }
 
