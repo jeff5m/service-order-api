@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("service-order")
 @RequiredArgsConstructor
@@ -18,7 +20,8 @@ public class ServiceOrderController {
     private final ServiceOrderService serviceOrderService;
 
     @PostMapping
-    public ResponseEntity<ServiceOrder> save(@RequestBody ServiceOrder serviceOrder) {
+    public ResponseEntity<ServiceOrder> save(@Valid
+                                             @RequestBody ServiceOrder serviceOrder) {
         return new ResponseEntity<>(serviceOrderService.save(serviceOrder), HttpStatus.CREATED);
     }
 }
