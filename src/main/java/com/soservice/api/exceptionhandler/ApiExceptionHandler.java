@@ -30,6 +30,18 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         );
     }
 
+    @ExceptionHandler(EmailAlreadyRegisteredException.class)
+    public ResponseEntity<EmailAlreadyRegisteredExceptionDetails> handlerEmailAlreadyRegisteredException(EmailAlreadyRegisteredException emailAlreadyRegisteredException) {
+        return new ResponseEntity<>(
+                EmailAlreadyRegisteredExceptionDetails.builder()
+                        .status(HttpStatus.CONFLICT.value())
+                        .title("Email Already Registered Exception. Check Documentation")
+                        .timestamp(LocalDateTime.now())
+                        .details(emailAlreadyRegisteredException.getMessage())
+                        .build(), HttpStatus.CONFLICT
+        );
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
