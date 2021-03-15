@@ -15,6 +15,5 @@ public abstract class ServiceOrderMapper {
     @Mapping(source="client.name", target = "clientName")
     public abstract ServiceOrderClientResponse toServiceOrderClientResponse(ServiceOrder serviceOrder);
 
-    @Mapping(source="client.name", target = "clientName")
     public abstract List<ServiceOrderClientResponse> toListOfServiceOrderClientResponse(List<ServiceOrder> serviceOrder);
 }
