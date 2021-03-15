@@ -20,8 +20,9 @@ public class ServiceOrderService {
     private final ServiceOrderRepository serviceOrderRepository;
     private final ClientService clientService;
 
-    public List<ServiceOrder> listAll() {
-        return serviceOrderRepository.findAll();
+    public List<ServiceOrderClientResponse> listAll() {
+        List<ServiceOrder> serviceOrderList = serviceOrderRepository.findAll();
+        return ServiceOrderMapper.INSTANCE.toListOfServiceOrderClientResponse(serviceOrderList);
     }
 
     public ServiceOrderClientResponse findById(Long id) {

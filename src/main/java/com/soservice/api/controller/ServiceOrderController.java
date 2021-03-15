@@ -19,7 +19,7 @@ public class ServiceOrderController {
     private final ServiceOrderService serviceOrderService;
 
     @GetMapping
-    public ResponseEntity<List<ServiceOrder>> listAll() {
+    public ResponseEntity<List<ServiceOrderClientResponse>> listAll() {
         return new ResponseEntity<>(serviceOrderService.listAll(), HttpStatus.OK);
     }
 
