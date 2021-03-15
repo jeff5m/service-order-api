@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity
 @Data
@@ -41,8 +41,8 @@ public class ServiceOrder {
     private ServiceOrderStatus status;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private LocalDateTime createdAt;
+    private OffsetDateTime createdAt;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private LocalDateTime finishedAt;
+    private OffsetDateTime finishedAt;
 }

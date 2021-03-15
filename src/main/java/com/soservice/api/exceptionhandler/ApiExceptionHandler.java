@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 BadRequestExceptionDetails.builder()
                         .status(HttpStatus.BAD_REQUEST.value())
                         .title("Bad Request Exception. Check Documentation")
-                        .timestamp(LocalDateTime.now())
+                        .timestamp(OffsetDateTime.now())
                         .details(badRequestException.getMessage())
                         .build(), HttpStatus.BAD_REQUEST
         );
@@ -36,7 +36,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 EmailAlreadyRegisteredExceptionDetails.builder()
                         .status(HttpStatus.CONFLICT.value())
                         .title("Email Already Registered Exception. Check Documentation")
-                        .timestamp(LocalDateTime.now())
+                        .timestamp(OffsetDateTime.now())
                         .details(emailAlreadyRegisteredException.getMessage())
                         .build(), HttpStatus.CONFLICT
         );
@@ -60,7 +60,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 ArgumentsValidationExceptionDetails.builder()
                         .status(status.value())
                         .title("One or more fields are invalid! Please, fill all the fields correctly")
-                        .timestamp(LocalDateTime.now())
+                        .timestamp(OffsetDateTime.now())
                         .invalidFields(invalidFieldList)
                         .build(), HttpStatus.BAD_REQUEST);
     }

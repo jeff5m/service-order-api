@@ -8,7 +8,7 @@ import com.soservice.domain.repository.ServiceOrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Service
@@ -32,7 +32,7 @@ public class ServiceOrderService {
 
         serviceOrder.setClient(client);
         serviceOrder.setStatus(ServiceOrderStatus.OPEN);
-        serviceOrder.setCreatedAt(LocalDateTime.now());
+        serviceOrder.setCreatedAt(OffsetDateTime.now());
         return serviceOrderRepository.save(serviceOrder);
     }
 }
