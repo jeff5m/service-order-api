@@ -30,12 +30,12 @@ public class ServiceOrderService {
         return ServiceOrderMapper.INSTANCE.toServiceOrderClientResponse(serviceOrder);
     }
 
-    public ServiceOrder save(ServiceOrder serviceOrder) {
+    public ServiceOrderClientResponse save(ServiceOrder serviceOrder) {
         Client client = clientService.findByIdOrThrowBadRequestException(serviceOrder.getClient().getId());
 
         serviceOrder.setClient(client);
         serviceOrder.setStatus(ServiceOrderStatus.OPEN);
         serviceOrder.setCreatedAt(OffsetDateTime.now());
-        return serviceOrderRepository.save(serviceOrder);
+        return ServiceOrderMapper.INSTANCE.toServiceOrderClientResponse(serviceOrderRepository.save(serviceOrder));
     }
 }

@@ -29,8 +29,8 @@ public class ServiceOrderController {
     }
 
     @PostMapping
-    public ResponseEntity<ServiceOrder> save(@Valid
-                                             @RequestBody ServiceOrder serviceOrder) {
+    public ResponseEntity<ServiceOrderClientResponse> save(@Valid
+                                                           @RequestBody ServiceOrder serviceOrder) {
         return new ResponseEntity<>(serviceOrderService.save(serviceOrder), HttpStatus.CREATED);
     }
 }
