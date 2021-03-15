@@ -1,4 +1,4 @@
-package com.soservice.api.representationmodel.models;
+package com.soservice.api.representationmodel.models.serviceorder;
 
 import com.soservice.domain.model.ServiceOrderStatus;
 import lombok.Builder;

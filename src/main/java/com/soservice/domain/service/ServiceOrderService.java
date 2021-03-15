@@ -2,7 +2,7 @@ package com.soservice.domain.service;
 
 import com.soservice.api.exceptionhandler.BadRequestException;
 import com.soservice.api.representationmodel.ServiceOrderMapper;
-import com.soservice.api.representationmodel.models.ServiceOrderClientResponse;
+import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderClientResponse;
 import com.soservice.domain.model.Client;
 import com.soservice.domain.model.ServiceOrder;
 import com.soservice.domain.model.ServiceOrderStatus;

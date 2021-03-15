@@ -1,6 +1,6 @@
 package com.soservice.api.controller;
 
-import com.soservice.api.representationmodel.models.ServiceOrderClientResponse;
+import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderClientResponse;
 import com.soservice.domain.model.ServiceOrder;
 import com.soservice.domain.service.ServiceOrderService;
 import lombok.RequiredArgsConstructor;

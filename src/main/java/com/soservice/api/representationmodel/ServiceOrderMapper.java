@@ -1,6 +1,6 @@
 package com.soservice.api.representationmodel;
 
-import com.soservice.api.representationmodel.models.ServiceOrderClientResponse;
+import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderClientResponse;
 import com.soservice.domain.model.ServiceOrder;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
