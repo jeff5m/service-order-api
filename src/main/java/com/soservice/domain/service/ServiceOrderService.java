@@ -1,6 +1,8 @@
 package com.soservice.domain.service;
 
 import com.soservice.api.exceptionhandler.BadRequestException;
+import com.soservice.api.representationmodel.ServiceOrderMapper;
+import com.soservice.api.representationmodel.models.ServiceOrderClientResponse;
 import com.soservice.domain.model.Client;
 import com.soservice.domain.model.ServiceOrder;
 import com.soservice.domain.model.ServiceOrderStatus;
@@ -22,9 +24,10 @@ public class ServiceOrderService {
         return serviceOrderRepository.findAll();
     }
 
-    public ServiceOrder findById(Long id) {
-        return serviceOrderRepository.findById(id)
+    public ServiceOrderClientResponse findById(Long id) {
+        ServiceOrder serviceOrder = serviceOrderRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException("Service Order not found!"));
+        return ServiceOrderMapper.INSTANCE.toServiceOrderClientResponse(serviceOrder);
     }
 
     public ServiceOrder save(ServiceOrder serviceOrder) {

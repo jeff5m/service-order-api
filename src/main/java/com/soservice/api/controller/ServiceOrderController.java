@@ -1,5 +1,6 @@
 package com.soservice.api.controller;
 
+import com.soservice.api.representationmodel.models.ServiceOrderClientResponse;
 import com.soservice.domain.model.ServiceOrder;
 import com.soservice.domain.service.ServiceOrderService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class ServiceOrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ServiceOrder> findById(@PathVariable Long id) {
+    public ResponseEntity<ServiceOrderClientResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(serviceOrderService.findById(id));
     }
 
