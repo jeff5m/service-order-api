@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 @Builder
 public class ServiceOrderResponse {
     private Long id;
-    private String clientName;
+    private ServiceOrderClientResponse client;
     private String description;
     private BigDecimal price;
     private ServiceOrderStatus status;
