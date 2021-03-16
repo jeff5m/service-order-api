@@ -2,7 +2,7 @@ package com.soservice.domain.service;
 
 import com.soservice.api.exceptionhandler.BadRequestException;
 import com.soservice.api.representationmodel.ServiceOrderMapper;
-import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderClientResponse;
+import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderResponse;
 import com.soservice.domain.model.Client;
 import com.soservice.domain.model.ServiceOrder;
 import com.soservice.domain.model.ServiceOrderStatus;
@@ -20,23 +20,23 @@ public class ServiceOrderService {
     private final ServiceOrderRepository serviceOrderRepository;
     private final ClientService clientService;
 
-    public List<ServiceOrderClientResponse> listAll() {
+    public List<ServiceOrderResponse> listAll() {
         List<ServiceOrder> serviceOrderList = serviceOrderRepository.findAll();
-        return ServiceOrderMapper.INSTANCE.toListOfServiceOrderClientResponse(serviceOrderList);
+        return ServiceOrderMapper.INSTANCE.toListOfServiceOrderResponse(serviceOrderList);
     }
 
-    public ServiceOrderClientResponse findById(Long id) {
+    public ServiceOrderResponse findById(Long id) {
         ServiceOrder serviceOrder = serviceOrderRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException("Service Order not found!"));
-        return ServiceOrderMapper.INSTANCE.toServiceOrderClientResponse(serviceOrder);
+        return ServiceOrderMapper.INSTANCE.toServiceOrderResponse(serviceOrder);
     }
 
-    public ServiceOrderClientResponse save(ServiceOrder serviceOrder) {
+    public ServiceOrderResponse save(ServiceOrder serviceOrder) {
         Client client = clientService.findByIdOrThrowBadRequestException(serviceOrder.getClient().getId());
 
         serviceOrder.setClient(client);
         serviceOrder.setStatus(ServiceOrderStatus.OPEN);
         serviceOrder.setCreatedAt(OffsetDateTime.now());
-        return ServiceOrderMapper.INSTANCE.toServiceOrderClientResponse(serviceOrderRepository.save(serviceOrder));
+        return ServiceOrderMapper.INSTANCE.toServiceOrderResponse(serviceOrderRepository.save(serviceOrder));
     }
 }

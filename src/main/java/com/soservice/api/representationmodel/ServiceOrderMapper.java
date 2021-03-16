@@ -1,9 +1,8 @@
 package com.soservice.api.representationmodel;
 
-import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderClientResponse;
+import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderResponse;
 import com.soservice.domain.model.ServiceOrder;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -12,8 +11,7 @@ import java.util.List;
 public abstract class ServiceOrderMapper {
     public static final ServiceOrderMapper INSTANCE = Mappers.getMapper(ServiceOrderMapper.class);
 
-    @Mapping(source="client.name", target = "clientName")
-    public abstract ServiceOrderClientResponse toServiceOrderClientResponse(ServiceOrder serviceOrder);
+    public abstract ServiceOrderResponse toServiceOrderResponse(ServiceOrder serviceOrder);
 
-    public abstract List<ServiceOrderClientResponse> toListOfServiceOrderClientResponse(List<ServiceOrder> serviceOrder);
+    public abstract List<ServiceOrderResponse> toListOfServiceOrderResponse(List<ServiceOrder> serviceOrder);
 }

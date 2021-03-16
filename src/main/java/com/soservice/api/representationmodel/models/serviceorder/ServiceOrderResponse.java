@@ -9,7 +9,7 @@ import java.time.OffsetDateTime;
 
 @Data
 @Builder
-public class ServiceOrderClientResponse {
+public class ServiceOrderResponse {
     private Long id;
     private String clientName;
     private String description;

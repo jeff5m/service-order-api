@@ -1,6 +1,6 @@
 package com.soservice.api.controller;
 
-import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderClientResponse;
+import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderResponse;
 import com.soservice.domain.model.ServiceOrder;
 import com.soservice.domain.service.ServiceOrderService;
 import lombok.RequiredArgsConstructor;
@@ -19,17 +19,17 @@ public class ServiceOrderController {
     private final ServiceOrderService serviceOrderService;
 
     @GetMapping
-    public ResponseEntity<List<ServiceOrderClientResponse>> listAll() {
+    public ResponseEntity<List<ServiceOrderResponse>> listAll() {
         return new ResponseEntity<>(serviceOrderService.listAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ServiceOrderClientResponse> findById(@PathVariable Long id) {
+    public ResponseEntity<ServiceOrderResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(serviceOrderService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<ServiceOrderClientResponse> save(@Valid
+    public ResponseEntity<ServiceOrderResponse> save(@Valid
                                                            @RequestBody ServiceOrder serviceOrder) {
         return new ResponseEntity<>(serviceOrderService.save(serviceOrder), HttpStatus.CREATED);
     }
