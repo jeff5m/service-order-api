@@ -1,7 +1,7 @@
 package com.soservice.api.controller;
 
+import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderPostRequest;
 import com.soservice.api.representationmodel.models.serviceorder.ServiceOrderResponse;
-import com.soservice.domain.model.ServiceOrder;
 import com.soservice.domain.service.ServiceOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ public class ServiceOrderController {
 
     @PostMapping
     public ResponseEntity<ServiceOrderResponse> save(@Valid
-                                                           @RequestBody ServiceOrder serviceOrder) {
-        return new ResponseEntity<>(serviceOrderService.save(serviceOrder), HttpStatus.CREATED);
+                                                     @RequestBody ServiceOrderPostRequest serviceOrderPostRequest) {
+        return new ResponseEntity<>(serviceOrderService.save(serviceOrderPostRequest), HttpStatus.CREATED);
     }
 }
