@@ -37,7 +37,7 @@ public class ServiceOrderService {
     public ServiceOrderResponse save(ServiceOrderPostRequest serviceOrderPostRequest) {
         ServiceOrder serviceOrder = ServiceOrderMapper.INSTANCE.toServiceOrder(serviceOrderPostRequest);
         Client client = clientService.findByIdOrThrowBadRequestException(serviceOrderPostRequest.getClient().getId());
-        log.info(client);
+        log.info(serviceOrder);
         serviceOrder.setClient(client);
         serviceOrder.setStatus(ServiceOrderStatus.OPEN);
         serviceOrder.setCreatedAt(OffsetDateTime.now());

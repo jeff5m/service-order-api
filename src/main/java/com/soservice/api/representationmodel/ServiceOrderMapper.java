@@ -18,6 +18,9 @@ public abstract class ServiceOrderMapper {
 
     public abstract List<ServiceOrderResponse> toListOfServiceOrderResponse(List<ServiceOrder> serviceOrder);
 
-    @Mapping(target = "client.id", source = "client.id")
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "finishedAt", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     public abstract ServiceOrder toServiceOrder(ServiceOrderPostRequest serviceOrderPostRequest);
 }
