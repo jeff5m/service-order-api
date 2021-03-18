@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {ClientService.class})
 public interface ServiceOrderMapper {
 
     ServiceOrderResponse toServiceOrderResponse(ServiceOrder serviceOrder);
@@ -20,5 +20,6 @@ public interface ServiceOrderMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "finishedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
+    @Mapping(source = "client.id", target = "client")
     ServiceOrder toServiceOrder(ServiceOrderPostRequest serviceOrderPostRequest);
 }
