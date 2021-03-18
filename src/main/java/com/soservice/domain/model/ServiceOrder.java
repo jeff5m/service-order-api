@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,4 +31,7 @@ public class ServiceOrder {
     private ServiceOrderStatus status;
     private OffsetDateTime createdAt;
     private OffsetDateTime finishedAt;
+
+    @OneToMany(mappedBy = "serviceOrder")
+    private List<Comment> comments = new ArrayList<>();
 }
