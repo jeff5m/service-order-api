@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/service-order/{serviceOrderId}/comments")
@@ -16,6 +17,11 @@ import javax.validation.Valid;
 public class CommentController {
 
     private final CommentService commentService;
+
+    @GetMapping
+    public List<CommentResponse> listAll(@PathVariable Long serviceOrderId) {
+        return commentService.listAllFromServiceOrder(serviceOrderId);
+    }
 
     @PostMapping
     public ResponseEntity<CommentResponse> save(@PathVariable Long serviceOrderId,
