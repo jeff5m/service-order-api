@@ -42,6 +42,18 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         );
     }
 
+    @ExceptionHandler(ServiceOrderException.class)
+    public ResponseEntity<ServiceOrderExceptionDetails> handlerServiceOrderException(ServiceOrderException serviceOrderException) {
+        return new ResponseEntity<>(
+                ServiceOrderExceptionDetails.builder()
+                        .status(HttpStatus.CONFLICT.value())
+                        .title("Service Order its not open")
+                        .timestamp(OffsetDateTime.now())
+                        .details(serviceOrderException.getMessage())
+                        .build(), HttpStatus.CONFLICT
+        );
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {

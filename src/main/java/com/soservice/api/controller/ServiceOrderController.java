@@ -28,6 +28,12 @@ public class ServiceOrderController {
         return ResponseEntity.ok(serviceOrderService.findById(id));
     }
 
+    @PutMapping("/{id}/finalization")
+    public ResponseEntity<Void> finish(@PathVariable Long id) {
+        serviceOrderService.finish(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @PostMapping
     public ResponseEntity<ServiceOrderResponse> save(@Valid
                                                      @RequestBody ServiceOrderPostRequest serviceOrderPostRequest) {

@@ -42,4 +42,12 @@ public class ServiceOrderService {
         serviceOrder.setCreatedAt(OffsetDateTime.now());
         return serviceOrderMapper.toServiceOrderResponse(serviceOrderRepository.save(serviceOrder));
     }
+
+    public void finish(Long serviceOrderId) {
+        ServiceOrder serviceOrder = findAndReturnServiceOrderById(serviceOrderId);
+        serviceOrder.finish();
+        serviceOrderRepository.save(serviceOrder);
+
+        serviceOrder.setStatus(ServiceOrderStatus.FINISHED);
+    }
 }

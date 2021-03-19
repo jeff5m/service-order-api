@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/service-order/{serviceOrderId}/comments")
+@RequestMapping("service-order/{serviceOrderId}/comments")
 @RequiredArgsConstructor
 public class CommentController {
 

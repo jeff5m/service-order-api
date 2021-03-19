@@ -1,5 +1,6 @@
 package com.soservice.domain.model;
 
+import com.soservice.api.exceptionhandler.ServiceOrderException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,4 +35,16 @@ public class ServiceOrder {
 
     @OneToMany(mappedBy = "serviceOrder")
     private List<Comment> comments = new ArrayList<>();
+
+    public void finish() {
+        if(canNotBeFinished()) {
+            throw new ServiceOrderException("This service order it is not OPEN. It cannot be finished.");
+        }
+        this.setStatus(ServiceOrderStatus.FINISHED);
+        this.setFinishedAt(OffsetDateTime.now());
+    }
+
+    private boolean canNotBeFinished() {
+        return !ServiceOrderStatus.OPEN.equals(getStatus());
+    }
 }
