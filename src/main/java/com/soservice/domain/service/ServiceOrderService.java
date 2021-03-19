@@ -31,6 +31,11 @@ public class ServiceOrderService {
         return serviceOrderMapper.toServiceOrderResponse(serviceOrder);
     }
 
+    public ServiceOrder findAndReturnServiceOrderById(Long id) {
+        return serviceOrderRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException("Service Order not found!"));
+    }
+
     public ServiceOrderResponse save(ServiceOrderPostRequest serviceOrderPostRequest) {
         ServiceOrder serviceOrder = serviceOrderMapper.toServiceOrder(serviceOrderPostRequest);
         serviceOrder.setStatus(ServiceOrderStatus.OPEN);
